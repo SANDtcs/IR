@@ -26,3 +26,14 @@ adjMat = np.array([
 hubs, auths = hits(adjMat)
 print("Hub Scores:", hubs)
 print("Authority Scores:", auths)
+
+
+import networkx as nx
+
+G = nx.DiGraph()
+for i in range(hits.shape[1]):
+    for j in range(hits.shape[0]):
+        if hits[j, i] == 1:
+            G.add_edge(i, j)
+nx.draw(G, with_labels = True)
+nx.hits(G, max_iter = 10, normalized = True)
